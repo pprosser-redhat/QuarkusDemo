@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: heroclientvs
+  namespace: hero-client
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - hero-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /hellohero
+    route:
+    - destination:
+        host: rest-hero-client 
+        port:
+          number: 80

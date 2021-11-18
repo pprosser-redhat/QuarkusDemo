@@ -1,0 +1,20 @@
+kind: ServiceEntry
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: hero
+spec:
+  hosts:
+    - hero
+  addresses: ~
+  ports:
+    - name: http80
+      number: 8080
+      protocol: HTTP
+      targetPort: 8080
+  location: MESH_EXTERNAL
+  resolution: DNS
+  endpoints:
+    - address: hero.hero.svc.cluster.local
+  workloadSelector: ~
+  exportTo: ~
+  subjectAltNames: ~
