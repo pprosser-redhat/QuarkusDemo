@@ -1,0 +1,63 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: rest-hero
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "true"
+    spec:
+      replicas: 1
+      containers:
+        - args:
+            - -Dquarkus.http.host=0.0.0.0
+            - -Djava.util.logging.manager=org.jboss.logmanager.LogManager
+            - -jar
+            - /deployments/quarkus-run.jar
+          command:
+            - java
+          env:
+            - name: KUBERNETES_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: JAVA_APP_JAR
+              value: /deployments/rest-hero-1.0-runner.jar
+          image: pprosser/rest-hero:1.0
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /q/health/live
+              port: 80
+              scheme: HTTP
+            initialDelaySeconds: 0
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 10
+          name: rest-hero
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /q/health/ready
+              port: 80
+              scheme: HTTP
+            initialDelaySeconds: 0
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 10
+      serviceAccount: rest-hero
+  triggers:
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+          - rest-hero
+        from:
+          kind: ImageStreamTag
+          name: rest-hero:1.0
+      type: ImageChange
