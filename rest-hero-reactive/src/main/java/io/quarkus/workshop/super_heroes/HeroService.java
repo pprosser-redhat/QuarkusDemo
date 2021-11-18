@@ -19,6 +19,7 @@ public class HeroService {
     public Uni<Hero> findHeroById(Long id) {
         Uni<Hero> hero = Hero.findById(id);
         return hero.onItem().invoke(i -> {
+            System.out.println ("Sending....");
             emitter.send(Record.of (i.id, i.name));        
             });
     }
