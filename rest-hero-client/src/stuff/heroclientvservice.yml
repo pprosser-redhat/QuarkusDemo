@@ -5,7 +5,8 @@ metadata:
   namespace: hero-client
 spec:
   hosts:
-  - "*"
+    - istio-ingressgateway-istio-system.apps.cluster-dqlzl.dqlzl.sandbox1722.opentlc.com
+    - rest-hero-client
   gateways:
   - hero-gateway
   http:

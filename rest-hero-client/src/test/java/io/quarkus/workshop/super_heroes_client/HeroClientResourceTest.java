@@ -9,13 +9,15 @@ import static org.hamcrest.CoreMatchers.*;
 @QuarkusTest
 public class HeroClientResourceTest {
 
+    // start jvm without debug mode to avoid clash with rest api in dev mode
+    // -Ddebug=false
     @Test
     public void testHelloEndpoint() {
         given()
-          .when().get("/hellohero/24")
+          .when().get("/hellohero/2147")
           .then()
              .statusCode(200)
-             .body("hello", is("Hello Buffy"));
+             .body("hello", is("Hello Chewbacca"));
     }
 
 }

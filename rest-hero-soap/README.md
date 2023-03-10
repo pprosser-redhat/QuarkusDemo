@@ -1,4 +1,4 @@
-# hello-world Project
+# rest-hero-soap Project
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
@@ -43,18 +43,6 @@ Or, if you don't have GraalVM installed, you can run the native executable build
 ./mvnw package -Pnative -Dquarkus.native.container-build=true
 ```
 
-You can then execute your native executable with: `./target/hello-world-1.0-runner`
+You can then execute your native executable with: `./target/rest-hero-soap-1.0-runner`
 
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
-
-## Related Guides
-
-- RESTEasy JAX-RS ([guide](https://quarkus.io/guides/rest-json)): REST endpoint framework implementing JAX-RS and more
-
-## Provided Code
-
-### RESTEasy JAX-RS
-
-Easily start your RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
+If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.html.

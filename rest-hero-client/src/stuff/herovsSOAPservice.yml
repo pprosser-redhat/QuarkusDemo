@@ -1,0 +1,32 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: herosoapvs
+spec:
+  hosts:
+  - hero.hero-client.svc.cluster.local
+  - hero-client-hero-gateway-525eca1d5089dbdc-istio-system.apps.cluster-dqlzl.dqlzl.sandbox1722.opentlc.com
+  gateways:
+  - hero-gateway
+#  http:
+#  - match:
+#    - uri:
+#        prefix: /cxf
+#    route:
+#    - destination:
+#        host: hero 
+#        port:
+#          number: 8080
+  http:
+  - fault:
+      delay:
+        percentage:
+          value: 50
+        fixedDelay: 5s
+    route:
+    - destination:
+        host: hero
+        port:
+          number: 8080
+
+      

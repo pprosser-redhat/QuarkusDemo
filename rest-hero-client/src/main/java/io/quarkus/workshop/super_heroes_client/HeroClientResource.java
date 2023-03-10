@@ -33,8 +33,9 @@ public class HeroClientResource {
     @Path("/{id}")
     public Hello hello(@PathParam("id") long id) throws ProcessingException, ApiException {
         
-        return new Hello("Hello " + heroService.heroById(id).name);
-        //return new Hello("Hello " + heroAPI.heroIdGet(id).getName());
+        System.out.println ("Trying to get a hero");
+        //return new Hello("Hello " + heroService.heroById(id).name);
+        return new Hello("Hello " + heroAPI.heroIdGet(id).getName());
         //return new Hello("Hello " + "Phil");
     }
 }

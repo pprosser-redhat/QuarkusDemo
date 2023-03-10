@@ -1,7 +1,10 @@
 package io.quarkus.workshop.super_heroes;
 
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -43,5 +46,19 @@ public class HeroResource {
     @SecurityRequirement(name = "hero-key")
     public Response getherobyid(@PathParam("id") Long id) {
         return Response.ok(heroService.findHeroById(id)).build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response createHero(Hero hero){
+        return Response.ok(heroService.createHero(hero)).build();
+    }
+
+    @DELETE
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/{id}")
+    public Response deleteHero(@PathParam("id") Long id){
+        heroService.deleteHero(id);
+        return Response.ok("Hero " + id + " deleted").build();
     }
 }
