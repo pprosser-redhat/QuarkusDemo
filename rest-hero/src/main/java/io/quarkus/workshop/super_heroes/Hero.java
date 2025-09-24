@@ -23,7 +23,6 @@ public class Hero extends PanacheEntity {
     @Column(columnDefinition = "TEXT")
     public String powers;
 
-
     @Override
     public String toString() {
         return "Hero{" +

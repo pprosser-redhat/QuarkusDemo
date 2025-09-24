@@ -1,0 +1,27 @@
+{
+  "namespace": "org.acme.kafka.hero",
+  "type": "record",
+  "name": "Hero",
+  "fields": [
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "otherName",
+      "type": "string"
+    },
+    {
+      "name": "level",
+      "type": "int"
+    },
+    {
+      "name": "picture",
+      "type": "string"
+    },
+    {
+      "name": "powers",
+      "type": "string"
+    }
+  ]
+}
